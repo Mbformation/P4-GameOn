@@ -32,27 +32,30 @@ function closeModal() {
 class FormTemplate {
   constructor(formSelector, submitButtonSelector) {
     this.formSelector = formSelector;
-    this.submitButton = new FormSubmitButton();
     this.submitButtonSelector = submitButtonSelector;
+    this.submitButton = new FormSubmitButton(submitButtonSelector);
   }
-  addFormField() {}
-
+  shareFieldDataForProcessing() {}
   submitForm() {
-    return this.submitButton.deactivateButton(this.submitButtonSelector);
+    return this.submitButton.deactivateButton();
   }
 }
-
 class FormSubmitButton {
-  deactivateButton(buttonSelector) {
-    const buttonElement = document.querySelector(buttonSelector);
-    buttonElement.classList.add("disabled");
+  constructor(submitButtonSelector) {
+    this.buttonElement = document.querySelector(submitButtonSelector);
+  }
+  deactivateButton() {
+    this.buttonElement.classList.add("disabled");
+  }
+  activateButton() {
+    this.buttonElement.classList.remove("disabled");
   }
 }
-
 class FormField {}
-
 const inscriptionForm = new FormTemplate(
   ".formData",
   ".btn-submit"
 ).submitForm();
 console.log(inscriptionForm);
+
+// buttonElement.classList.remove('disabled');
