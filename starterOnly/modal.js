@@ -37,9 +37,15 @@ class FormTemplate {
   }
   shareFieldDataForProcessing() {}
   submitForm() {
-    return this.submitButton.deactivateButton();
+    let formIsValid = false;
+    if (formIsValid) {
+      return this.submitButton.activateButton();
+    } else {
+      return this.submitButton.deactivateButton();
+    }
   }
 }
+
 class FormSubmitButton {
   constructor(submitButtonSelector) {
     this.buttonElement = document.querySelector(submitButtonSelector);
@@ -51,11 +57,45 @@ class FormSubmitButton {
     this.buttonElement.classList.remove("disabled");
   }
 }
-class FormField {}
+
+class FormField {
+  firstButton() {
+    const firstField = document.getElementById("first");
+    const regexPattern = /^[a-zA-Z]{2,}$/;
+
+    firstField.addEventListener("input", () => {
+      if (!regexPattern.test(firstField.value)) {
+        document
+          .querySelector(".formData")
+          .setAttribute("data-error", "Deux caractères");
+        document
+          .querySelector(".formData")
+          .setAttribute("data-error-visible", "true");
+      } else {
+        document.querySelector(".formData").removeAttribute("data-error");
+        document
+          .querySelector(".formData")
+          .removeAttribute("data-error-visible");
+      }
+    });
+  }
+}
+
+const formField = new FormField().firstButton();
+
 const inscriptionForm = new FormTemplate(
   ".formData",
   ".btn-submit"
 ).submitForm();
-console.log(inscriptionForm);
 
-// buttonElement.classList.remove('disabled');
+/*    hideError()
+    {
+        this.dom.parentElement.setAttribute('data-error', '');
+        this.dom.parentElement.removeAttribute('data-error-visible');
+    }
+
+    showError(message)
+    {
+        this.dom.parentElement.setAttribute('data-error', message);
+        this.dom.parentElement.setAttribute('data-error-visible', 'true');
+    }*/
