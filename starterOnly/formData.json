@@ -1,0 +1,48 @@
+{
+    "formSelector": "#myForm",
+    "submitButtonSelector": "#submitButton",
+    "fields": [
+      {
+        "fieldSelector": "first",
+        "fieldType": "text-input",
+        "fieldRegex": "^[A-Za-z]+$",
+        "fieldRequired": true
+      },
+      {
+        "fieldSelector": "last",
+        "fieldType": "text-input",
+        "fieldRegex": "^[A-Za-z]+$",
+        "fieldRequired": true
+      },
+      {
+        "fieldSelector": "email",
+        "fieldType": "text-input",
+        "fieldRegex": "^\\S+@\\S+\\.\\S+$",
+        "fieldRequired": true
+      },
+      {
+        "fieldSelector": "birthdate",
+        "fieldType": "text-input",
+        "fieldRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
+        "fieldRequired": true
+      },
+      {
+        "fieldSelector": "quantity",
+        "fieldType": "text-input",
+        "fieldRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
+        "fieldRequired": true
+      },
+      {
+        "fieldSelector": "quantity",
+        "fieldType": "radio-buttons",
+        "fieldRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
+        "fieldRequired": true
+      },
+      {
+        "fieldSelector": "quantity",
+        "fieldType": "checkboxes",
+        "fieldRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
+        "fieldRequired": true
+      }
+    ]
+  }

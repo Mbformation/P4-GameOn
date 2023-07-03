@@ -29,13 +29,13 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
-class FormTemplate {
+class Form {
   constructor(formSelector, submitButtonSelector) {
     this.formSelector = formSelector;
     this.submitButtonSelector = submitButtonSelector;
     this.submitButton = new FormSubmitButton(submitButtonSelector);
   }
-  shareFieldDataForProcessing() {}
+  validateFields() {}
   submitForm() {
     let formIsValid = false;
     if (formIsValid) {
@@ -81,21 +81,16 @@ class FormField {
   }
 }
 
+/*
+Field = {fieldType, fieldSeletor, fieldRegex, fieldRequired
+  
+  FieldsValidator
+  validateEachField(
+    if (fieldtype = textField) {}
+    if (fieldtype = checkbox) {}
+    if (fieldtype = radio) {}
+  )*/
+
 const formField = new FormField().firstButton();
 
-const inscriptionForm = new FormTemplate(
-  ".formData",
-  ".btn-submit"
-).submitForm();
-
-/*    hideError()
-    {
-        this.dom.parentElement.setAttribute('data-error', '');
-        this.dom.parentElement.removeAttribute('data-error-visible');
-    }
-
-    showError(message)
-    {
-        this.dom.parentElement.setAttribute('data-error', message);
-        this.dom.parentElement.setAttribute('data-error-visible', 'true');
-    }*/
+const inscriptionForm = new Form(".formData", ".btn-submit").submitForm();
