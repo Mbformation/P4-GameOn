@@ -30,10 +30,11 @@ function closeModal() {
 }
 
 class Form {
-  constructor(formSelector, submitButtonSelector) {
-    this.formSelector = formSelector;
-    this.submitButtonSelector = submitButtonSelector;
-    this.submitButton = new FormSubmitButton(submitButtonSelector);
+  constructor(jsonData) {
+    this.formSelector = jsonData.formSelector;
+    this.submitButtonSelector = jsonData.submitButtonSelector;
+    this.fields = jsonData.fields;
+    this.submitButton = new FormSubmitButton(this.submitButtonSelector);
   }
   validateFields() {}
   submitForm() {
@@ -81,16 +82,13 @@ class FormField {
   }
 }
 
-/*
-Field = {fieldType, fieldSeletor, fieldRegex, fieldRequired
-  
-  FieldsValidator
-  validateEachField(
-    if (fieldtype = textField) {}
-    if (fieldtype = checkbox) {}
-    if (fieldtype = radio) {}
-  )*/
+fetch("formData.json")
+  .then((response) => response.json())
+  .then((jsonData) => {
+    const signupForm = new Form(jsonData).submitForm();
+  })
+  .catch((error) => {
+    console.error("Error fetching JSON data:", error);
+  });
 
 const formField = new FormField().firstButton();
-
-const inscriptionForm = new Form(".formData", ".btn-submit").submitForm();

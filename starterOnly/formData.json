@@ -1,6 +1,6 @@
 {
     "formSelector": "#myForm",
-    "submitButtonSelector": "#submitButton",
+    "submitButtonSelector": ".btn-submit",
     "fields": [
       {
         "fieldSelector": "first",
