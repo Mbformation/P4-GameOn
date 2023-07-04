@@ -35,8 +35,17 @@ class Form {
     this.submitButtonSelector = jsonData.submitButtonSelector;
     this.fields = jsonData.fields;
     this.submitButton = new FormSubmitButton(this.submitButtonSelector);
+    this.fieldValidator = new FieldValidator();
   }
-  validateFields() {}
+  validateFields() {
+    for (const field of this.fields) {
+      if (field.fieldType === "text-input") {
+        this.fieldValidator.validateTextInput(field);
+      } else {
+        this.fieldValidator.validateClickInput(field);
+      }
+    }
+  }
   submitForm() {
     let formIsValid = false;
     if (formIsValid) {
@@ -59,27 +68,9 @@ class FormSubmitButton {
   }
 }
 
-class FormField {
-  firstButton() {
-    const firstField = document.getElementById("first");
-    const regexPattern = /^[a-zA-Z]{2,}$/;
-
-    firstField.addEventListener("input", () => {
-      if (!regexPattern.test(firstField.value)) {
-        document
-          .querySelector(".formData")
-          .setAttribute("data-error", "Deux caractères");
-        document
-          .querySelector(".formData")
-          .setAttribute("data-error-visible", "true");
-      } else {
-        document.querySelector(".formData").removeAttribute("data-error");
-        document
-          .querySelector(".formData")
-          .removeAttribute("data-error-visible");
-      }
-    });
-  }
+class FieldValidator {
+  validateTextInput() {}
+  validateClickInput() {}
 }
 
 fetch("formData.json")
@@ -91,4 +82,28 @@ fetch("formData.json")
     console.error("Error fetching JSON data:", error);
   });
 
+/*
+  class FormField {
+    firstButton() {
+      const firstField = document.getElementById("first");
+      const regexPattern = /^[a-zA-Z]{2,}$/;
+  
+      firstField.addEventListener("input", () => {
+        if (!regexPattern.test(firstField.value)) {
+          document
+            .querySelector(".formData")
+            .setAttribute("data-error", "Deux caractères");
+          document
+            .querySelector(".formData")
+            .setAttribute("data-error-visible", "true");
+        } else {
+          document.querySelector(".formData").removeAttribute("data-error");
+          document
+            .querySelector(".formData")
+            .removeAttribute("data-error-visible");
+        }
+      });
+    }
+  }
 const formField = new FormField().firstButton();
+*/
