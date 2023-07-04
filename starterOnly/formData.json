@@ -6,40 +6,45 @@
         "fieldSelector": "first",
         "fieldType": "text-input",
         "fieldRegex": "^[A-Za-z]+$",
-        "fieldRequired": true
+        "fieldRequired": true,
+        "fieldErrorMessage": "Prénom Valide"
       },
       {
         "fieldSelector": "last",
         "fieldType": "text-input",
         "fieldRegex": "^[A-Za-z]+$",
-        "fieldRequired": true
+        "fieldRequired": true,
+        "fieldErrorMessage": "Nom Valide"
       },
       {
         "fieldSelector": "email",
         "fieldType": "text-input",
         "fieldRegex": "^\\S+@\\S+\\.\\S+$",
-        "fieldRequired": true
+        "fieldRequired": true,
+        "fieldErrorMessage": "Email Valide"
       },
       {
         "fieldSelector": "birthdate",
         "fieldType": "text-input",
         "fieldRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
-        "fieldRequired": true
+        "fieldRequired": true,
+        "fieldErrorMessage": "Date Valide"
       },
       {
         "fieldSelector": "quantity",
         "fieldType": "text-input",
         "fieldRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
+        "fieldRequired": true,
+        "fieldErrorMessage": "Entre 1 et 100"
+      },
+      {
+        "fieldSelector": "quantity",
+        "fieldType": "radio-button",
         "fieldRequired": true
       },
       {
         "fieldSelector": "quantity",
-        "fieldType": "radio-buttons",
-        "fieldRequired": true
-      },
-      {
-        "fieldSelector": "quantity",
-        "fieldType": "checkboxes",
+        "fieldType": "checkbox",
         "fieldRequired": true
       }
     ]

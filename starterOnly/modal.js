@@ -30,80 +30,83 @@ function closeModal() {
 }
 
 class Form {
-  constructor(jsonData) {
-    this.formSelector = jsonData.formSelector;
-    this.submitButtonSelector = jsonData.submitButtonSelector;
-    this.fields = jsonData.fields;
+  constructor(data) {
+    this.formSelector = data.formSelector;
+    this.submitButtonSelector = data.submitButtonSelector;
+    this.fields = data.fields;
     this.submitButton = new FormSubmitButton(this.submitButtonSelector);
-    this.fieldValidator = new FieldValidator();
+    this.fieldValidator = new FieldValidator(this.fields);
   }
-  validateFields() {
-    for (const field of this.fields) {
-      if (field.fieldType === "text-input") {
-        this.fieldValidator.validateTextInput(field);
-      } else {
-        this.fieldValidator.validateClickInput(field);
-      }
-    }
-  }
-  submitForm() {
+  checkForSubmission() {
+    this.fieldValidator.validate();
     let formIsValid = false;
     if (formIsValid) {
-      return this.submitButton.activateButton();
+      return this.submitButton.activate();
     } else {
-      return this.submitButton.deactivateButton();
+      return this.submitButton.deactivate();
     }
   }
+  submit() {}
 }
 
 class FormSubmitButton {
   constructor(submitButtonSelector) {
     this.buttonElement = document.querySelector(submitButtonSelector);
   }
-  deactivateButton() {
+  deactivate() {
     this.buttonElement.classList.add("disabled");
   }
-  activateButton() {
+  activate() {
     this.buttonElement.classList.remove("disabled");
   }
 }
 
 class FieldValidator {
-  validateTextInput() {}
-  validateClickInput() {}
+  constructor(fields) {
+    this.fields = fields;
+  }
+  validate() {
+    for (const field of this.fields) {
+      if (field.fieldType === "text-input") {
+        this.validateTextInput(field);
+      } else if (field.fieldType === "radio-button") {
+        this.validateRadioBtn(field);
+      } else {
+        this.validateCheckbox(field);
+      }
+    }
+  }
+  validateTextInput(field) {
+    const fieldElement = document.getElementById(field.fieldSelector);
+    console.log(fieldElement);
+    const regexPattern = new RegExp(field.fieldRegex);
+    fieldElement.addEventListener("input", () => {
+      if (!regexPattern.test(fieldElement.value)) {
+        document
+          .querySelector(".formData")
+          .setAttribute("data-error", field.fieldErrorMessage);
+        document
+          .querySelector(".formData")
+          .setAttribute("data-error-visible", "true");
+      } else {
+        document.querySelector(".formData").removeAttribute("data-error");
+        document
+          .querySelector(".formData")
+          .removeAttribute("data-error-visible");
+      }
+    });
+  }
+  validateRadioBtn() {}
+  validateCheckbox() {}
 }
 
 fetch("formData.json")
   .then((response) => response.json())
-  .then((jsonData) => {
-    const signupForm = new Form(jsonData).submitForm();
+  .then((data) => {
+    const signupForm = new Form(data);
+    signupForm.checkForSubmission();
+    signupForm.submit();
   })
   .catch((error) => {
     console.error("Error fetching JSON data:", error);
   });
-
-/*
-  class FormField {
-    firstButton() {
-      const firstField = document.getElementById("first");
-      const regexPattern = /^[a-zA-Z]{2,}$/;
-  
-      firstField.addEventListener("input", () => {
-        if (!regexPattern.test(firstField.value)) {
-          document
-            .querySelector(".formData")
-            .setAttribute("data-error", "Deux caractères");
-          document
-            .querySelector(".formData")
-            .setAttribute("data-error-visible", "true");
-        } else {
-          document.querySelector(".formData").removeAttribute("data-error");
-          document
-            .querySelector(".formData")
-            .removeAttribute("data-error-visible");
-        }
-      });
-    }
-  }
-const formField = new FormField().firstButton();
-*/
