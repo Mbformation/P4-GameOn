@@ -97,8 +97,36 @@ class FieldValidator {
       }
     });
   }
-  validateRadioBtn() {}
-  validateCheckbox() {}
+  validateRadioBtn(field) {
+    const radioButtons = document.getElementsByName(field.fieldSelector);
+    const errorMessageContainer = radioButtons[0].parentElement;
+    let isChecked = false;
+    for (const radioButton of radioButtons) {
+      radioButton.addEventListener("change", () => {
+        isChecked = [...radioButtons].some((radio) => radio.checked);
+        if (!isChecked && field.fieldRequired) {
+          errorMessageContainer.setAttribute("data-error", "Champ obligatoire");
+          errorMessageContainer.setAttribute("data-error-visible", "true");
+        } else {
+          errorMessageContainer.removeAttribute("data-error");
+          errorMessageContainer.removeAttribute("data-error-visible");
+        }
+      });
+    }
+  }
+  validateCheckbox(field) {
+    const checkboxElement = document.getElementById(field.fieldSelector);
+    const errorMessageContainer = checkboxElement.parentElement;
+    checkboxElement.addEventListener("change", () => {
+      if (!checkboxElement.checked && field.fieldRequired) {
+        errorMessageContainer.setAttribute("data-error", "Champ obligatoire");
+        errorMessageContainer.setAttribute("data-error-visible", "true");
+      } else {
+        errorMessageContainer.removeAttribute("data-error");
+        errorMessageContainer.removeAttribute("data-error-visible");
+      }
+    });
+  }
 }
 
 fetch("formData.json")
