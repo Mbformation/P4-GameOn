@@ -5,14 +5,14 @@
       {
         "fieldSelector": "first",
         "fieldType": "text-input",
-        "fieldRegex": "^[A-Za-z]+$",
+        "fieldRegex": "^[A-Za-z]+(?:[-'][A-Za-z]+)*$",
         "fieldRequired": true,
         "fieldErrorMessage": "Prénom Valide"
       },
       {
         "fieldSelector": "last",
         "fieldType": "text-input",
-        "fieldRegex": "^[A-Za-z]+$",
+        "fieldRegex": "^[A-Za-z]+(?:[-'][A-Za-z]+)*$",
         "fieldRequired": true,
         "fieldErrorMessage": "Nom Valide"
       },
@@ -26,16 +26,16 @@
       {
         "fieldSelector": "birthdate",
         "fieldType": "text-input",
-        "fieldRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
+        "fieldRegex": "^(19[2-9]\\d|20[01]\\d|2020)-(0[1-9]|1[0-2])-([0-2]\\d|3[01])$",
         "fieldRequired": true,
         "fieldErrorMessage": "Date Valide"
       },
       {
         "fieldSelector": "quantity",
         "fieldType": "text-input",
-        "fieldRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
+        "fieldRegex": "^(?:[1-9]|[1-9][0-9])$",
         "fieldRequired": true,
-        "fieldErrorMessage": "Entre 1 et 100"
+        "fieldErrorMessage": "Entre 1 et 99"
       },
       {
         "fieldSelector": "quantity",

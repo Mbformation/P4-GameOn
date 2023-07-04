@@ -78,21 +78,22 @@ class FieldValidator {
   }
   validateTextInput(field) {
     const fieldElement = document.getElementById(field.fieldSelector);
-    console.log(fieldElement);
     const regexPattern = new RegExp(field.fieldRegex);
+    const errorMessageContainer = fieldElement.parentElement;
     fieldElement.addEventListener("input", () => {
-      if (!regexPattern.test(fieldElement.value)) {
-        document
-          .querySelector(".formData")
-          .setAttribute("data-error", field.fieldErrorMessage);
-        document
-          .querySelector(".formData")
-          .setAttribute("data-error-visible", "true");
+      const fieldValue = fieldElement.value.trim();
+      if (!regexPattern.test(fieldValue) && fieldElement.value !== "") {
+        errorMessageContainer.setAttribute(
+          "data-error",
+          field.fieldErrorMessage
+        );
+        errorMessageContainer.setAttribute("data-error-visible", "true");
+      } else if (field.fieldRequired && fieldValue === "") {
+        errorMessageContainer.setAttribute("data-error", "Champ obligatoire");
+        errorMessageContainer.setAttribute("data-error-visible", "true");
       } else {
-        document.querySelector(".formData").removeAttribute("data-error");
-        document
-          .querySelector(".formData")
-          .removeAttribute("data-error-visible");
+        errorMessageContainer.removeAttribute("data-error");
+        errorMessageContainer.removeAttribute("data-error-visible");
       }
     });
   }
