@@ -126,7 +126,7 @@ a.active {
   .topnav.responsive .icon {
     position:absolute;
     right: 0;
-    top: 7px;
+    top: 6px;
     text-align: right;
   }
 
@@ -256,12 +256,12 @@ input {
 }
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.4em;
+  font-size: 12px;
   color: #e54858;
   display: block;
-  margin-top: 7px;
-  margin-bottom: 7px;
-  text-align: right;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  text-align: left;
   line-height: 0.3;
   opacity: 0;
   transition: 0.3s;

@@ -1,51 +1,57 @@
 {
-    "formSelector": "#myForm",
-    "submitButtonSelector": ".btn-submit",
-    "fields": [
+  "submitButtonSelector": ".btn-submit",
+  "fields": [
       {
-        "fieldSelector": "first",
-        "fieldType": "text-input",
-        "fieldRegex": "^[A-Za-z]+(?:[-'][A-Za-z]+)*$",
-        "fieldRequired": true,
-        "fieldErrorMessage": "Prénom Valide"
+        "selector": "#first",
+        "type": "text-input",
+        "regex": "^[A-Za-z]{2,}(?:[-'][A-Za-z]+)*$",
+        "required": true,
+        "errorMessage": "Veuillez renseigner un Prénom correct"
       },
       {
-        "fieldSelector": "last",
-        "fieldType": "text-input",
-        "fieldRegex": "^[A-Za-z]+(?:[-'][A-Za-z]+)*$",
-        "fieldRequired": true,
-        "fieldErrorMessage": "Nom Valide"
+        "selector": "#last",
+        "type": "text-input",
+        "regex": "^[A-Za-z]{2,}(?:[-'][A-Za-z]+)*$",
+        "required": true,
+        "errorMessage": "Veuillez renseigner une Nom correct"
       },
       {
-        "fieldSelector": "email",
-        "fieldType": "text-input",
-        "fieldRegex": "^\\S+@\\S+\\.\\S+$",
-        "fieldRequired": true,
-        "fieldErrorMessage": "Email Valide"
+        "selector": "#email",
+        "type": "text-input",
+        "regex": "^\\S+@\\S+\\.\\S+$",
+        "required": true,
+        "errorMessage": "Veuillez renseigner un email correct"
       },
       {
-        "fieldSelector": "birthdate",
-        "fieldType": "text-input",
-        "fieldRegex": "^(19[2-9]\\d|20[01]\\d|2020)-(0[1-9]|1[0-2])-([0-2]\\d|3[01])$",
-        "fieldRequired": true,
-        "fieldErrorMessage": "Date Valide"
+        "selector": "#birthdate",
+        "type": "text-input",
+        "regex": "^(19[2-9]\\d|20[01]\\d|2020)-(0[1-9]|1[0-2])-([0-2]\\d|3[01])$",
+        "required": true,
+        "errorMessage": "Veuillez renseigner une date correcte"
       },
       {
-        "fieldSelector": "quantity",
-        "fieldType": "text-input",
-        "fieldRegex": "^(?:[1-9]|[1-9][0-9])$",
-        "fieldRequired": true,
-        "fieldErrorMessage": "Entre 1 et 99"
+        "selector": "#quantity",
+        "type": "text-input",
+        "regex": "^(?:[1-9]|[1-9][0-9])$",
+        "required": true,
+        "errorMessage": "Veuillez renseigner un nombre entre 1 et 99 inclus"
       },
       {
-        "fieldSelector": "quantity",
-        "fieldType": "radio-button",
-        "fieldRequired": true
+        "selector": ".checkbox-input",
+        "type": "radio-button",
+        "required": true,
+        "errorMessage": "Veuillez renseigner une ville"
       },
       {
-        "fieldSelector": "quantity",
-        "fieldType": "checkbox",
-        "fieldRequired": true
+        "selector": "#checkbox1",
+        "type": "checkbox",
+        "required": true,
+        "errorMessage": "Veuillez accepter les termes et conditions d'utilisation"
+      },
+      {
+        "selector": "#checkbox2",
+        "type": "checkbox",
+        "required": false
       }
     ]
   }
