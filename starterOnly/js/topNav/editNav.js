@@ -1,3 +1,4 @@
+/* EditNavigation function for burger menu on responsive */
 function editNav() {
   let x = document.getElementById("myTopnav");
   if (x.className === "topnav") {

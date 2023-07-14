@@ -37,7 +37,7 @@
         "errorMessage": "Veuillez renseigner un nombre entre 1 et 99 inclus"
       },
       {
-        "selector": ".checkbox-input",
+        "selector": "input[name='location']",
         "type": "radio-button",
         "required": true,
         "errorMessage": "Veuillez renseigner une ville"

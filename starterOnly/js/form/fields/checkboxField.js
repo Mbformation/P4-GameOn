@@ -1,19 +1,26 @@
 import ErrorMessage from "../errorMessage/errorMessage.js";
 
-class CheckboxField {
-  constructor(field) {
-    this.field = field;
-    this.errorMessage = new ErrorMessage(field);
-  }
-  validate(field) {
-    field.element.addEventListener("change", () => {
-      if (!field.element.checked && field.required) {
-        this.errorMessage.wrong(field);
+/* CheckboxField object definition */
+const CheckboxField = {
+  /* Listen to each checkbox */
+  listen(field) {
+    field.element.addEventListener("input", () => {
+      if (this.validate(field)) {
+        ErrorMessage.hide(field);
       } else {
-        this.errorMessage.hide(field);
+        ErrorMessage.wrong(field);
       }
+      field.form.validate(); // call form.validate method
     });
-  }
-}
+  },
+
+  /* Validate each checkbox */
+  validate(field) {
+    if (!field.required) {
+      return true;
+    }
+    return field.element.checked;
+  },
+};
 
 export default CheckboxField;
