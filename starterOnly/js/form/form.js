@@ -53,39 +53,18 @@ class Form {
 
   /* Edit form appearance */
   showSuccessMessage() {
+    /* Add new title with style */
     document.querySelector(
       "form"
     ).innerHTML = `<h1>Merci pour votre inscription</h1>`;
-    document.querySelector(".modal-body").style.cssText = `
-        display: flex;
-        align-items:center;
-        justify-content: center;
-        height: 80vh;
-        text-align: center;
-        position: relative;
-      `;
+    document.querySelector(".modal-body").classList.add("new-title");
+    /* Add new button with style */
     const closeButton = document.createElement("button");
-    closeButton.classList.add("new-button");
     closeButton.innerText = "Fermer";
-    closeButton.style.cssText = `
-        background: #fe142f;
-        margin-top: 0.5em;
-        padding-top: 0.7em;
-        padding-bottom: 0.7em;
-        padding-left: 4em;
-        padding-right: 4em;
-        color: #fff;
-        border-radius: 10px;
-        cursor: pointer;
-        font-size: 16px;
-        position: absolute;
-        bottom: 10px;
-        margin: auto;
-        border: unset;
-      `;
+    closeButton.classList.add("new-button");
+    /* Add new close button with style */
     document.querySelector(".modal-body").appendChild(closeButton);
     closeButton.addEventListener("click", closeModal);
-
     const closeIcon = document.querySelector(".close");
     closeIcon.addEventListener("click", (e) => {
       closeModal();
