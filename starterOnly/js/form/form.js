@@ -5,14 +5,14 @@ import SubmitButton from "./submitButton/submitButton.js";
 
 /* Form class definition */
 class Form {
-  constructor(data) {
-    this.submitButtonElement = data.submitButtonElement; // Button element to pass in the SubmitButton instance
+  constructor({ fields, submitButtonElement }) {
     /* adding the form property to each field in data */
-    this.fields = data.fields.map((field) => {
+    this.fields = fields.map((field) => {
       field.form = this; // form is an object representing the instance of form class
       return field;
     });
-    this.submitButton = new SubmitButton(this.submitButtonElement); // creating an instance of Submit Button
+    this.submitButton = new SubmitButton(submitButtonElement); // creating an instance of Submit Button
+    this.submitButton.deactivate();
   }
 
   /* Match field.type value with corresponding Field object */
@@ -26,7 +26,7 @@ class Form {
         return CheckboxField;
 
       default:
-        return null;
+        throw Error("Ce type de champ n'existe pas");
     }
   }
 

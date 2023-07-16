@@ -6,14 +6,14 @@
         "type": "text-input",
         "regex": "^[A-Za-z]{2,}(?:[-'][A-Za-z]+)*$",
         "required": true,
-        "errorMessage": "Veuillez renseigner un Prénom correct"
+        "errorMessage": "Veuillez renseigner un prénom correct"
       },
       {
         "selector": "#last",
         "type": "text-input",
         "regex": "^[A-Za-z]{2,}(?:[-'][A-Za-z]+)*$",
         "required": true,
-        "errorMessage": "Veuillez renseigner une Nom correct"
+        "errorMessage": "Veuillez renseigner une nom correct"
       },
       {
         "selector": "#email",
